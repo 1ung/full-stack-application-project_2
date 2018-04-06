@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS reviews (
 -- create comments table
 CREATE TABLE IF NOT EXISTS comments (
     id SERIAL PRIMARY KEY,
-    review_id INTEGER,3
+    review_id INTEGER,
     user_id INTEGER,
     message TEXT,
     date TIMESTAMP

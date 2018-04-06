@@ -1,9 +1,7 @@
-\c project_2
-
 INSERT INTO users
-    (name, email, password, admin)
+    (name, email, password, admin, img)
 VALUES
-    ('test', 'test@123.com', 'abc123', TRUE);
+    ('test', 'test@123.com', 'abc123', TRUE, 'https://avatarfiles.alphacoders.com/752/75205.png');
 INSERT INTO clubs
     (user_id, name, img, location, postal_code, description)
 VALUES
