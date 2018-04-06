@@ -2,35 +2,62 @@ const newForm = (request, response) => {
     response.render('user/new');
 };
 
-const editForm = (request, response) => {
-    let loggedIn = request.cookies['loggedIn'];
-    let username = request.cookies['username'];
+const editForm = (db) => {
+    return (request, response) => {
 
-    db.user.get(request, response(error, queryResult) => {
+        let loggedIn = request.cookies['loggedIn'];
+        let username = request.cookies['username'];
+        let userid = request.cookies['userid'];
 
-    let context = {
-        loggedIn: loggedIn,
-        username: username,
-        user: queryResult.rows[0]
+        let context = {
+            loggedIn: loggedIn,
+            username: username,
+            userid: userid,
+        };
+
+        db.user.get(userid, (error, queryResult) => {
+            if (error) {
+                console.error(error);
+            }
+
+            if (userid == queryResult.rows[0].id) {
+                context.email = queryResult.rows[0].email;
+                context.avatar = queryResult.rows[0].img;
+            }
+            response.render('user/edit', context);
+        });
     };
-
-    response.render('user/edit', context);
 };
 
+const profile = (db) => {
+    return (request, response) => {
 
-const profile = (request, response) => {
-    let loggedIn = request.cookies['loggedIn'];
-    let username = request.cookies['username'];
+        let loggedIn = request.cookies['loggedIn'];
+        let username = request.cookies['username'];
+        let userid = request.cookies['userid'];
 
-    db.user.get(request, response)
-    let context = {
-        loggedIn: loggedIn,
-        username: username,
+        db.user.get(userid, (error, queryResult) => {
+
+            if (error) {
+                // console.log('ERRRRROR!')
+                console.error(error);
+            }
+
+            let context = {
+                loggedIn: loggedIn,
+                username: username,
+                userid: userid
+            };
+
+            if (userid == queryResult.rows[0].id) {
+
+                context.img = queryResult.rows[0].img;
+            }
+
+            response.render('user/profile', context);
+        });
     };
-
-    response.render('user/profile', context);
 };
-
 
 const create = (db) => {
     return (request, response) => {
@@ -50,9 +77,9 @@ const create = (db) => {
 
             if (queryResult.rowCount >= 1) {
                 console.log('User created successfully');
-
                 response.cookie('loggedIn', true);
                 response.cookie('username', request.body.name);
+                response.cookie('userid', queryResult.rows[0].id);
             } else {
                 console.log('User could not be created');
             }
@@ -83,12 +110,39 @@ const login = (db) => {
             if (queryResult) {
                 response.cookie('loggedIn', true);
                 response.cookie('username', request.body.name);
+                response.cookie('userid', queryResult.rows[0].id);
                 response.redirect(301, '/');
             } else {
                 response.redirect('/users/login');
             }
         });
     };
+};
+
+const userUpdate = (db) => {
+    return (request, response) => {
+        console.log('updating');
+        let loggedIn = request.cookies['loggedIn'];
+        let username = request.cookies['username'];
+        let userid = request.cookies['userid'];
+
+        let context = {
+            loggedIn: loggedIn,
+            username: username,
+            userid: userid
+        };
+
+        request.body.id = parseInt(userid);
+
+        db.user.update(request.body, (error, queryResult) => {
+
+            if (error) {
+                console.error(error);
+            } else {
+                response.redirect('/users/' + request.body.id + '/profile');
+            }
+        });
+    }
 };
 
 module.exports = {
@@ -98,5 +152,6 @@ module.exports = {
     loginForm,
     login,
     profile,
-    editForm
+    editForm,
+    userUpdate
 };

@@ -6,7 +6,7 @@ module.exports = (dbPool) => {
             bcrypt.hash(user.password, 1, (err, hashed) => {
                 if (err) console.error('error!', err);
 
-                const queryString = 'INSERT INTO users (name, email, password, admin) VALUES ($1, $2, $3, $4)';
+                const queryString = 'INSERT INTO users (name, email, password, admin) VALUES ($1, $2, $3, $4) RETURNING id';
                 const values = [user.name, user.email, hashed, 'false'];
 
                 dbPool.query(queryString, values, (error, queryResult) => {
@@ -27,7 +27,7 @@ module.exports = (dbPool) => {
 
         login: (user, callback) => {
 
-            const queryString = 'SELECT * FROM users where name=$1'
+            const queryString = 'SELECT * FROM users WHERE name=$1'
             const values = [user.name];
 
             dbPool.query(queryString, values, (error, queryResult) => {
@@ -39,6 +39,17 @@ module.exports = (dbPool) => {
                     }
                 });
             });
-        }
+        },
+
+        update: (user, callback) => {
+
+            const queryString = 'UPDATE users SET email=$1, img=$2 WHERE id=$3';
+            const values = [user.email, user.img, parseInt(user.id)];
+
+            dbPool.query(queryString , values, (error, queryResult) => {
+                console.log(queryResult);
+                callback(error, queryResult);
+            });
+        },
     };
 };

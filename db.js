@@ -17,5 +17,6 @@ pool.on('error', function (err) {
 
 module.exports = {
     pool: pool,
-    user: user(pool)
+    user: user(pool),
+    club: club(pool)
 };

@@ -36,17 +36,22 @@ require('./routes')(app, db);
 
 // Root GET request (it doesn't belong in any controller file)
 app.get('/', (request, response) => {
+
     let loggedIn = request.cookies['loggedIn'];
     let username = request.cookies['username'];
+    let userid = request.cookies['userid'];
 
     db.pool.query('SELECT * FROM clubs', (error, queryResult) => {
         if (error) console.error('error', error);
-
+        
         let context = {
             loggedIn: loggedIn,
             username: username,
-            club: queryResult.rows[0]
+            userid: userid,
+            clubid: queryResult.rows[0].id,
+            clubimg: queryResult.rows[0].img
         };
+
         response.render('home', context);
     });
 });
