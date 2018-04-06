@@ -1,0 +1,30 @@
+<div class="ui celled grid">
+    <div class="row">
+        <div class="three wide column profile">
+            <img class="ui avatar small image" src="{{user.img}}">
+            <br>
+            <h4>test</h4>
+            <a href="/users/{{user.id}}/edit">
+                <div class="ui vertical animated button" tabindex="0">
+                    <div class="hidden content">Edit</div>
+                    <div class="visible content">
+                        <i class="pencil icon"></i>
+                    </div>
+                </div>
+            </a>
+            <p></p>
+            <form action="/clubs/new" method="GET">
+                <button class="ui teal button">
+                    <i class="icon add"></i>
+                    Add Reviews
+                </button>
+            </form>
+        </div>
+        <div class="thirteen wide column">
+            <div class="ui two item menu">
+                <a class="item">Reviews</a>
+                <a class="item">Bookmarks</a>
+            </div>
+        </div>
+    </div>
+</div>

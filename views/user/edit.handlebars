@@ -1,0 +1,32 @@
+<form class="user-form" method="POST" action="/users">
+    <div class="ui two column centered grid">
+        <div class="column">
+            <div class="ui big form">
+                <div class="one fields">
+                    <div class="ten wide field">
+                        <label>Email</label>
+                        <input type="text" name="email" value="{{user.email}}">
+                    </div>
+                </div>
+            </div>
+            <div class="two column centered row">
+                <div class="column">
+                    <div class="ui big form">
+                        <div class="one fields">
+                            <div class="ten wide field">
+                                <label>Profile Avatar</label>
+                                <input value="{{user.img}}" type="text" name="img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="two column centered row">
+                <div class="two column centered row">
+                    <div class="column">
+                        <button class="positive ui button">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>

@@ -1,0 +1,17 @@
+{
+  "name": "full-stack-application-project_2",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/1ung/full-stack-application-project_2.git",
+  "author": "1ung <leewhe@hotmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^1.0.3",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "method-override": "^2.3.10",
+    "pg": "^7.4.1"
+  }
+}
+  
