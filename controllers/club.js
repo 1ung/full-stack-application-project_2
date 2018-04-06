@@ -31,12 +31,12 @@ const clubImage = (db) => {
                 if (error) {
                     console.error(error);
                 }
-                if (request.params.id == clubResult.rows[0].id) {
-                    context.name = clubResult.rows[0].name;
-                    context.clubImg = clubResult.rows[0].img;
-                    context.postalCode = clubResult.rows[0].postal_code;
-                    context.location = clubResult.rows[0].location;
-                }
+                // if (request.params.id == clubResult.rows[0].id) {
+                //     context.name = clubResult.rows[0].name;
+                //     context.clubImg = clubResult.rows[0].img;
+                //     context.postalCode = clubResult.rows[0].postal_code;
+                //     context.location = clubResult.rows[0].location;
+                // }
                 if (userid == userResult.rows[0].id) {
                     context.userImg = userResult.rows[0].img;
                 }

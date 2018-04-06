@@ -3,19 +3,18 @@ const club = require('./models/club');
 const user = require('./models/user');
 
 
-const pool = new pg.Pool(configs);
 
-pool.on('error', function (err) {
-    console.log('idle client error', err.message, err.stack);
-});
 
 
 //require the url library
 //this comes with node, so no need to yarn add
 const url = require('url');
+console.log('~~~~~~#1~~~~~~');
 
 //check to see if we have this heroku environment variable
 if (process.env.DATABASE_URL) {
+    console.log('~~~~~~#2~~~~~~');
+    console.log(process.env.DATABASE_URL);
 
     //we need to take apart the url so we can set the appropriate configs
 
@@ -33,6 +32,7 @@ if (process.env.DATABASE_URL) {
     };
 
 } else {
+    console.log('~~~~~~#3~~~~~~');
     const configs = {
         user: '1ung',
         host: '127.0.0.1',
@@ -41,6 +41,11 @@ if (process.env.DATABASE_URL) {
     };
 }
 //this is the same
+const pool = new pg.Pool(configs);
+
+pool.on('error', function (err) {
+    console.log('idle client error', err.message, err.stack);
+});
 
 module.exports = {
     pool: pool,
