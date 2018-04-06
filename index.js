@@ -42,6 +42,7 @@ app.get('/', (request, response) => {
     let userid = request.cookies['userid'];
 
     db.pool.query('SELECT * FROM clubs', (error, queryResult) => {
+        console.log(queryResult);
         if (error) console.error('error', error);
         
         let context = {
