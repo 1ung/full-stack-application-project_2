@@ -1,31 +1,48 @@
 <form class="user-form" method="POST" action="/users/login">
-    <div class="ui two column centered grid">
+    <div class="ui two column middle aligned very relaxed centered stackable grid">
         <div class="column">
             <div class="ui big form">
-                <div class="one fields">
-                    <div class="ten wide field">
-                        <label>Username</label>
-                        <input placeholder="Username" type="text" name="name">
+                <div class="ten wide field">
+                    <label>Username</label>
+                    <div class="ui left icon input">
+                        <input type="text" placeholder="Username" name="name" required>
+                        <i class="user icon"></i>
                     </div>
                 </div>
-            </div>
-            <div class="two column centered row">
-                <div class="column">
-                    <div class="ui big form">
-                        <div class="one fields">
-                            <div class="ten wide field">
-                                <label>Password</label>
-                                <input placeholder="Password" type="password" name="password">
-                            </div>
-                        </div>
+                <div class="ten wide field">
+                    <label>Password</label>
+                    <div class="ui left icon input">
+                        <input type="password" placeholder="Password" name="password" required>
+                        <i class="lock icon"></i>
                     </div>
                 </div>
-            </div>
-            <div class="two column centered row">
-                <div class="column">
-                    <button class="positive ui button">Login</button>
-                </div>
+                <button class="ui blue submit button">Login</button>
             </div>
         </div>
     </div>
 </form>
+{{!-- <script>
+    $('.ui.form')
+        .form({
+            fields: {
+                username: {
+                    identifier: 'name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your username'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Invalid password!'
+                        }
+                    ]
+                }
+            }
+        });
+</script> --}}

@@ -1,16 +1,22 @@
 <div class="ui celled grid">
     <div class="row">
         <div class="three wide column profile">
-            <h4>{{username}}</h4>
-            <img class="ui avatar small image" src="{{img}}">
+            <div class="ui fluid black centered card">
+                <div class="image">
+                    <img src="{{img}}">
+                </div>
+                <div class="content">
+                    <a class="header">{{username}}</a>
+                </div>
+            </div>
             <p></p>
             <a href="/users/{{userid}}/edit">
-                <div class="ui vertical animated button" tabindex="0">
+                <div class="ui olive vertical animated button" tabindex="0">
                     <div class="hidden content">Edit</div>
                     <div class="visible content">
                         <i class="pencil icon"></i>
                     </div>
-                </div>      
+                </div>
             </a>
             <p></p>
             <form action="/clubs/new" method="GET">

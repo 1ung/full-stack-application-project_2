@@ -1,0 +1,141 @@
+<form action="/clubs/{{clubid}}?_method=PUT" method="POST">
+    <div class="container">
+        <div class="ui sizer vertical segment">
+            <div class="ui huge header">Edit {{name}} Review</div>
+            <p></p>
+        </div>
+        <br>
+        <div class="ui form">
+            <div class="ten wide field">
+                <label>Club Name</label>
+                <input type="text" value="{{name}}" name="name">
+            </div>
+            <div class="ten wide field">
+                <label>Location</label>
+                <input type="text" value="{{location}}" name="location">
+            </div>
+            <div class="ten wide field">
+                <label>Postal Code</label>
+                <input type="text" value="{{postalCode}}" name="postal_code">
+            </div>
+            <div class="ten wide field">
+                <label>Photo</label>
+                <input type="text" value="{{img}}" name="img">
+            </div>
+            <p></p>
+            <span>
+                <b>Price</b>
+            </span>
+            <br>
+            <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Club Size</b>
+            </span>
+            <br>
+            <div class="ui large star rating size" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Crowd</b>
+            </span>
+            <br>
+            <div class="ui large star rating crowd" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Music</b>
+            </span>
+            <br>
+            <div class="ui large star rating music" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Models</b>
+            </span>
+            <br>
+            <div class="ui large star rating model" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Singers</b>
+            </span>
+            <br>
+            <div class="ui large star rating singer" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Customer Service</b>
+            </span>
+            <br>
+            <div class="ui large star rating cust_svc" data-rating="0" data-max-rating="5"></div>
+            <div class="ui form">
+                <br>
+                <div class="field">
+                    <label>Description</label>
+                    <textarea rows="14" name="description">{{description}}</textarea>
+                </div>
+            </div>
+            <p></p>
+            <form action="/" method="POST">
+                <button class="ui inverted brown button">
+                    <i class="icon paper plane"></i>
+                    Edit
+                </button>
+            </form>
+            <br>
+        </div>
+    </div>
+</form>
+
+<script>
+    $('.ui.rating')
+        .rating()
+        ;
+    window.onload = () => {
+        $('.ui.rating.price').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: Object.assign($('data'), { rating: value })
+            //   })
+        });
+        $('.ui.rating.size').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: Object.assign($('data'), { rating: value })
+            //   })
+        });
+        $('.ui.rating.crowd').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: Object.assign($('data'), { rating: value })
+            //   })
+        });
+        $('.ui.rating.music').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: Object.assign($('data'), { rating: value })
+            //   })
+        });
+        $('.ui.rating.model').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: Object.assign($('data'), { rating: value })
+            //   })
+        });
+        $('.ui.rating.singer').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: Object.assign($('data'), { rating: value })
+            //   })
+        });
+        $('.ui.rating.cust_svc').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: Object.assign($('data'), { rating: value })
+            //   })
+        });
+    }
+</script>

@@ -1,85 +1,85 @@
-<div class="container">
-    <div class="ui sizer vertical segment">
-        <div class="ui huge header">Add Club Review</div>
-        <p></p>
-    </div>
-    <br>
-    <div class="ui form">
-        <div class="required ten wide field">
-            <label>Club Name</label>
-            <input type="text" placeholder="Club Name" name="name">
+<form action="/clubs" method="POST">
+    <div class="container">
+        <div class="ui sizer vertical segment">
+            <div class="ui huge header">Add Club Review</div>
+            <p></p>
         </div>
-        <div class="required ten wide field">
-            <label>Location</label>
-            <input type="text" placeholder="Club Location" name="location">
-        </div>
-        <div class="required ten wide field">
-            <label>Postal Code</label>
-            <input type="text" placeholder="Enter 6 digits postal code" name="postal_code">
-        </div>
-        <div class="required ten wide field">
-            <label>Photo</label>
-            <input type="text" placeholder="Image Link     e.g.     https://i.imgur.com/eWO2UUJ.jpg" name="img">
-        </div>
-        <span>
-            <b>Price</b>
-        </span>
         <br>
-        <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
-        <br>
-        <span>
-            <b>Club Size</b>
-        </span>
-        <br>
-        <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
-        <br>
-        <span>
-            <b>Crowd</b>
-        </span>
-        <br>
-        <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
-        <br>
-        <span>
-            <b>Music</b>
-        </span>
-        <br>
-        <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
-        <br>
-        <span>
-            <b>Models</b>
-        </span>
-        <br>
-        <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
-        <br>
-        <span>
-            <b>Singers</b>
-        </span>
-        <br>
-        <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
-        <br>
-        <span>
-            <b>Customer Service</b>
-        </span>
-        <br>
-        <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
         <div class="ui form">
-            <br>
-            <div class="field">
-                <label>Description</label>
-                <textarea placeholder="Enter description here" rows="14"></textarea>
+            <div class="required ten wide field">
+                <label>Club Name</label>
+                <input type="text" placeholder="Club Name" name="name">
             </div>
+            <div class="required ten wide field">
+                <label>Location</label>
+                <input type="text" placeholder="Club Location" name="location">
+            </div>
+            <div class="required ten wide field">
+                <label>Postal Code</label>
+                <input type="text" placeholder="Enter 6 digits postal code" name="postal_code">
+            </div>
+            <div class="required ten wide field">
+                <label>Photo</label>
+                <input type="text" placeholder="Image Link e.g. https://i.imgur.com/eWO2UUJ.jpg" name="img">
+            </div>
+            <span>
+                <b>Price</b>
+            </span>
+            <br>
+            <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Club Size</b>
+            </span>
+            <br>
+            <div class="ui large star rating size" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Crowd</b>
+            </span>
+            <br>
+            <div class="ui large star rating crowd" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Music</b>
+            </span>
+            <br>
+            <div class="ui large star rating music" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Models</b>
+            </span>
+            <br>
+            <div class="ui large star rating model" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Singers</b>
+            </span>
+            <br>
+            <div class="ui large star rating singer" data-rating="0" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Customer Service</b>
+            </span>
+            <br>
+            <div class="ui large star rating cust_svc" data-rating="0" data-max-rating="5"></div>
+            <div class="ui form">
+                <br>
+                <div class="field">
+                    <label>Description</label>
+                    <textarea name="description" placeholder="Enter description here" rows="14"></textarea>
+                </div>
+            </div>
+            <br>
+            <form action="/clubs" method="POST">
+                <button class="ui inverted brown button">
+                    <i class="icon paper plane"></i>
+                    Submit Review
+                </button>
+            </form>
         </div>
-        <br>
-        <form action="/clubs" method="POST">
-            <button class="ui inverted violet button">
-                <i class="icon paper plane"></i>
-                Submit Review
-            </button>
-        </form>
-        <br>
-        <br>
     </div>
-</div>
+</form>
 
 <script>
     $('.ui.rating')
@@ -88,10 +88,52 @@
     window.onload = () => {
         $('.ui.rating.price').rating('setting', 'onRate', (value) => {
             //   $.ajax({
-            //     method: "PUT",
-            //     url: "favourite?_method=PUT",
-            //     data: Object.assign($('data'), { rating: value })
+            //     method: "POST",
+            //     url: "/clubs",
+            //     data: { rating: value })
             //   })
+        });
+        $('.ui.rating.size').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "POST",
+            //     url: "/clubs",
+            //     data: { rating: value })
+            //   })
+        });
+        $('.ui.rating.crowd').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "POST",
+            //     url: "/clubs",
+            //     data: { rating: value })
+            //   })
+        });
+        $('.ui.rating.music').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "POST",
+            //     url: "/clubs",
+            //     data: { rating: value })
+            //   })
+        });
+        $('.ui.rating.model').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "POST",
+            //     url: "/clubs",
+            //     data: { rating: value })
+            //   })
+        });
+        $('.ui.rating.singer').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "POST",
+            //     url: "/clubs",
+            //     data: { rating: value })
+            //   })
+        });
+        $('.ui.rating.cust_svc').rating('setting', 'onRate', (value) => {
+            // $.ajax({
+            //  method: "POST",
+            //  url: "/clubs",
+            // data: { rating: value }
+            // })
         });
     }
 </script>

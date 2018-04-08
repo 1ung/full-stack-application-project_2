@@ -40,17 +40,19 @@ app.get('/', (request, response) => {
     let loggedIn = request.cookies['loggedIn'];
     let username = request.cookies['username'];
     let userid = request.cookies['userid'];
+    let admin = request.cookies['admin'];
+
 
     db.pool.query('SELECT * FROM clubs', (error, queryResult) => {
-        console.log(queryResult);
         if (error) console.error('error', error);
-        
         let context = {
             loggedIn: loggedIn,
             username: username,
             userid: userid,
+            admin: admin,
             clubid: queryResult.rows[0].id,
-            clubimg: queryResult.rows[0].img
+            clubimg: queryResult.rows[0].img,
+            club: queryResult.rows
         };
 
         response.render('home', context);

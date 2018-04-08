@@ -1,27 +1,68 @@
 <div class="ui internally celled grid">
     <div class="row">
         <div class="three wide column">
-            <h3 class="ui header username">{{username}}</h3>
-            <img class="ui medium bordered rounded image" src="{{userImg}}">
-            <br>
-            <div class="ui labeled button" tabindex="0">
-                <div class="ui tiny red button">
-                    <i class="heart icon"></i> Like
+            <div class="ui fluid black centered profile card">
+                <div class="image">
+                    <img src="{{creatorImg}}">
                 </div>
-                <a class="ui basic red left pointing label">
-                    0
-                </a>
+                <div class="content">
+                    <a class="header">{{creatorname}}</a>
+                </div>
             </div>
-            <button class="ui blue icon button">
-                <i class="icon bookmark "></i>
-                Bookmark
-            </button>
+            <div class="like">
+                <div class="ui labeled button" tabindex="0">
+                    <div class="ui tiny red button">
+                        <i class="heart icon"></i> Like
+                    </div>
+                    <a class="ui basic red left pointing label">
+                        1
+                    </a>
+                </div>
+            </div>
+            <p></p>
+            <div class="bookmark">
+                <button class="ui teal icon button">
+                    <i class="icon bookmark "></i>
+                    Bookmark
+                </button>
+            </div>
+            <p></p>
+            {{#if edit}}
+            <div class="edit-del">
+                <form action="/clubs/{{clubid}}/edit" method="GET">
+                    <button class="ui vertical olive animated button" tabindex="0">
+                        <div class="hidden content">Edit</div>
+                        <div class="visible content">
+                            <i class="pencil icon"></i>
+                        </div>
+                    </button>
+                </form>
+                <form method="POST" action="/clubs/{{clubid}}?_method=DELETE">
+                    <button class="ui vertical black animated button" tabindex="0">
+                        <div class="hidden content">Delete</div>
+                        <div class="visible content">
+                            <i class="trash icon"></i>
+                        </div>
+                    </button>
+                </form>
+            </div>
+            {{/if}}
         </div>
         <div class="ten wide column">
             <h3 class="ui center aligned header">
                 {{name}}
             </h3>
             <img class="ui centered medium circular image" src="{{clubImg}}">
+            <br>
+            <div class="overall-rating">
+                <a class="ui big orange label">{{overall}}</a>
+            </div>
+            <p></p>
+            <div class="club-description">
+                <div class="ui floating violet compact large message">
+                    <p class="user-description">{{description}}</p>
+                </div>
+            </div>
             <h2 class="ui dividing left aligned header">
                 Location
             </h2>
@@ -34,7 +75,180 @@
                 <b>Price</b>
             </span>
             <br>
-            <div class="ui large star rating price" data-rating="0" data-max-rating="5"></div>
+            <div class="ui large star rating price" data-rating="{{price}}" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Club Size</b>
+            </span>
+            <br>
+            <div class="ui large star rating size" data-rating="{{size}}" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Crowd</b>
+            </span>
+            <br>
+            <div class="ui large star rating crowd" data-rating="{{crowd}}" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Music</b>
+            </span>
+            <br>
+            <div class="ui large star rating music" data-rating="{{music}}" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Models</b>
+            </span>
+            <br>
+            <div class="ui large star rating model" data-rating="{{model}}" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Singers</b>
+            </span>
+            <br>
+            <div class="ui large star rating singer" data-rating="{{singer}}" data-max-rating="5"></div>
+            <br>
+            <span>
+                <b>Customer Service</b>
+            </span>
+            <br>
+            <div class="ui large star rating cust_svc" data-rating="{{cust_svc}}" data-max-rating="5"></div>
+            <div class="ui comments">
+                <h3 class="ui dividing header">Comments</h3>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="{{userImg}}">
+                    </a>
+                    <div class="content">
+                        <a class="author">{{username}}</a>
+                        <div class="metadata">
+                            <span class="date">Today at 5:42PM</span>
+                        </div>
+                        <div class="text">
+                            How artistic!
+                        </div>
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="{{userImg}}">
+                    </a>
+                    <div class="content">
+                        <a class="author">Elliot Fu</a>
+                        <div class="metadata">
+                            <span class="date">Yesterday at 12:30AM</span>
+                        </div>
+                        <div class="text">
+                            <p>This has been very useful for my research. Thanks as well!</p>
+                        </div>
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <div class="comment">
+                            <a class="avatar">
+                                <img src="{{userImg}}">
+                            </a>
+                            <div class="content">
+                                <a class="author">Jenny Hess</a>
+                                <div class="metadata">
+                                    <span class="date">Just now</span>
+                                </div>
+                                <div class="text">
+                                    Elliot you are always so right :)
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">Reply</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="{{userImg}}">
+                    </a>
+                    <div class="content">
+                        <a class="author">Joe Henderson</a>
+                        <div class="metadata">
+                            <span class="date">5 days ago</span>
+                        </div>
+                        <div class="text">
+                            Dude, this is awesome. Thanks so much
+                        </div>
+                        <div class="actions">
+                            <a class="reply">Reply</a>
+                        </div>
+                    </div>
+                </div>
+                <form class="ui reply form">
+                    <div class="field">
+                        <textarea></textarea>
+                    </div>
+                    <button class="ui blue labeled submit icon button">
+                        <i class="icon edit"></i> Add Reply
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<script>
+    $('.ui.rating')
+        .rating()
+        ;
+    window.onload = () => {
+        $('.ui.rating.price').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: { rating: value }
+            //   })
+        });
+        $('.ui.rating.size').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: { rating: value }
+            //   })
+        });
+        $('.ui.rating.crowd').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: { rating: value }
+            //   })
+        });
+        $('.ui.rating.music').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: { rating: value })
+            //   })
+        });
+        $('.ui.rating.model').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: { rating: value }
+            //   })
+        });
+        $('.ui.rating.singer').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: { rating: value }
+            //   })
+        });
+        $('.ui.rating.cust_svc').rating('setting', 'onRate', (value) => {
+            //   $.ajax({
+            //     method: "PUT",
+            //     url: "favourite?_method=PUT",
+            //     data: { rating: value }
+            //   })
+        });
+    }
+</script>

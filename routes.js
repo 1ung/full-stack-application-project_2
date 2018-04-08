@@ -14,6 +14,9 @@ module.exports = (app, db) => {
 
 
     app.get('/clubs/new', clubs.newForm);
-    // app.post('/clubs', clubs.create(db));
-    app.get('/clubs/review/:id', clubs.clubImage(db));
+    app.post('/clubs', clubs.create(db));
+    app.get('/clubs/:id/review', clubs.clubImage(db));
+    app.get('/clubs/:id/edit', clubs.editForm(db));
+    app.put('/clubs/:id', clubs.editClub(db));
+    app.delete('/clubs/:id', clubs.del(db));
 };

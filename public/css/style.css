@@ -10,3 +10,27 @@
 .username {
     text-align: center;
 }
+
+.overall-rating {
+    text-align: center;
+}
+
+.club-description {
+    text-align: center;
+}
+
+.like {
+    text-align: center;
+}
+
+.user-description {
+    white-space: pre-line;
+}
+
+.bookmark {
+    text-align: center;
+}
+
+.edit-del {
+    text-align: center;
+}

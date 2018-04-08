@@ -5,7 +5,7 @@
                 <div class="one fields">
                     <div class="required ten wide field">
                         <label>Username</label>
-                        <input placeholder="Username" type="text" name="name">
+                        <input placeholder="Username" type="text" name="name" required>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                         <div class="one fields">
                             <div class="required ten wide field">
                                 <label>Email</label>
-                                <input placeholder="Email" type="email" name="email">
+                                <input placeholder="Email" type="email" name="email" required>
                             </div>
                         </div>
                     </div>
@@ -27,9 +27,7 @@
                         <div class="one fields">
                             <div class="required ten wide field">
                                 <label>Password</label>
-                                <input placeholder="Password" type="password" name="password">{{#if passworderror}}
-                                {{passworderror}}
-                                {{/if}}
+                                <input placeholder="Password" type="password" name="password" required>{{#if passworderror}} {{passworderror}} {{/if}}
                             </div>
                         </div>
                     </div>
@@ -41,16 +39,65 @@
                         <div class="one fields">
                             <div class="required ten wide field">
                                 <label>Confirm Password</label>
-                                <input placeholder="Confirm Password" type="password" name="confirmedpassword">
+                                <input placeholder="Confirm Password" type="password" name="confirmedpassword" required>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="two column centered row">
-                    <div class="column">
-                        <button class="positive ui button">Register</button>
-                    </div>
+                <div class="center aligned column">
+                    <button class="ui large green labeled icon button">
+                        <i class="signup icon"></i>
+                        Register
+                    </button>
                 </div>
             </div>
         </div>
+    </div>
 </form>
+{{!-- <script>
+    $('.ui.form')
+        .form({
+            fields: {
+                username: {
+                    identifier: 'name',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter your username'
+                        }
+                    ]
+                },
+                email: {
+                    identifier: 'email',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter a valid email'
+                        }
+                    ]
+                },
+                password: {
+                    identifier: 'password',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please enter a password'
+                        },
+                        {
+                            type: 'minLength[6]',
+                            prompt: 'Your password must be at least {ruleValue} characters'
+                        }
+                    ]
+                },
+                confirmedpassword: {
+                    identifier: 'confirmedpassword',
+                    rules: [
+                        {
+                            type: 'empty',
+                            prompt: 'Please confirm your password'
+                        }
+                    ]
+                }
+            }
+        })
+</script> --}}

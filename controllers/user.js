@@ -8,11 +8,13 @@ const editForm = (db) => {
         let loggedIn = request.cookies['loggedIn'];
         let username = request.cookies['username'];
         let userid = request.cookies['userid'];
+        let admin = request.cookies['admin'];
 
         let context = {
             loggedIn: loggedIn,
             username: username,
             userid: userid,
+            admin: admin
         };
 
         db.user.get(userid, (error, queryResult) => {
@@ -35,18 +37,19 @@ const profile = (db) => {
         let loggedIn = request.cookies['loggedIn'];
         let username = request.cookies['username'];
         let userid = request.cookies['userid'];
+        let admin = request.cookies['admin'];
 
         db.user.get(userid, (error, queryResult) => {
 
             if (error) {
-                // console.log('ERRRRROR!')
                 console.error(error);
             }
 
             let context = {
                 loggedIn: loggedIn,
                 username: username,
-                userid: userid
+                userid: userid,
+                admin: admin
             };
 
             if (userid == queryResult.rows[0].id) {
@@ -80,6 +83,7 @@ const create = (db) => {
                 response.cookie('loggedIn', true);
                 response.cookie('username', request.body.name);
                 response.cookie('userid', queryResult.rows[0].id);
+                response.cookie('admin', queryResult.rows[0].admin);
             } else {
                 console.log('User could not be created');
             }
@@ -93,6 +97,8 @@ const create = (db) => {
 const logout = (request, response) => {
     response.clearCookie('loggedIn');
     response.clearCookie('username');
+    response.clearCookie('userid');
+    response.clearCookie('admin');
     response.redirect(301, '/');
 };
 
@@ -107,13 +113,14 @@ const loginForm = (request, response) => {
 const login = (db) => {
     return (request, response) => {
         db.user.login(request.body, (error, queryResult) => {
-            if (queryResult) {
+            if (queryResult == false) {
+                response.redirect('/users/login');
+            } else {
                 response.cookie('loggedIn', true);
                 response.cookie('username', request.body.name);
                 response.cookie('userid', queryResult.rows[0].id);
+                response.cookie('admin', queryResult.rows[0].admin);
                 response.redirect(301, '/');
-            } else {
-                response.redirect('/users/login');
             }
         });
     };
@@ -125,11 +132,13 @@ const userUpdate = (db) => {
         let loggedIn = request.cookies['loggedIn'];
         let username = request.cookies['username'];
         let userid = request.cookies['userid'];
+        let admin = request.cookies['admin'];
 
         let context = {
             loggedIn: loggedIn,
             username: username,
-            userid: userid
+            userid: userid,
+            admin: admin
         };
 
         request.body.id = parseInt(userid);
