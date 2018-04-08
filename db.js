@@ -30,8 +30,8 @@ if (process.env.DATABASE_URL) {
         host: '127.0.0.1',
         database: 'project_2',
         port: 5432
-    };
-}
+    }
+};
 
 //this is the same
 const pool = new pg.Pool(configs);
