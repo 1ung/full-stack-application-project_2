@@ -5,6 +5,7 @@ Simple 'club' review site which allows user to login, rate, comment, bookmark, a
 Unsolved Issues includes:
 
 Getting and storing of rating's data
-Allowing users who are not logged in to browse
+Allowing users who are not logged in to browse 
 Comments section yet to be implemented
 Reviews and Bookmarks tab yet to be implemented
+Google maps API upon location click yet to be implemented
